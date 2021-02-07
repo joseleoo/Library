@@ -10,7 +10,7 @@ namespace Library.Models
     {
         public int Id { get; set; }
 
-        
+        [Required]
         [StringLength(100, ErrorMessage = "Solo se permiten 100 caracteres")]
         public string Nombre { get; set; }
     }

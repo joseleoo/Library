@@ -35,6 +35,7 @@ namespace Library.Controllers
             }
 
             var libro = await _context.Libro
+                .Include(e => e.Editorial)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (libro == null)
             {
@@ -64,7 +65,7 @@ namespace Library.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EditorialId"] = new SelectList(_context.Editorial, "Id", "Nombre",libro.IdEditorial);
+           
             return View(libro);
         }
 
@@ -81,6 +82,7 @@ namespace Library.Controllers
             {
                 return NotFound();
             }
+            ViewData["EditorialId"] = new SelectList(_context.Editorial, "Id", "Nombre", libro.IdEditorial);
             return View(libro);
         }
 
@@ -116,6 +118,7 @@ namespace Library.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["EditorialId"] = new SelectList(_context.Editorial, "Id", "Nombre", libro.IdEditorial);
             return View(libro);
         }
 
@@ -128,6 +131,7 @@ namespace Library.Controllers
             }
 
             var libro = await _context.Libro
+                .Include(e => e.Editorial)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (libro == null)
             {
