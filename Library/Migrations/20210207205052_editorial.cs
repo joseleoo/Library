@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Library.Migrations
 {
-    public partial class query : Migration
+    public partial class editorial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,7 +28,6 @@ namespace Library.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Titulo = table.Column<string>(maxLength: 100, nullable: true),
                     IdEditorial = table.Column<int>(nullable: false),
-                    EditorialId = table.Column<int>(nullable: true),
                     Fecha = table.Column<DateTime>(nullable: false),
                     Costo = table.Column<int>(nullable: false),
                     PrecioSugerido = table.Column<int>(nullable: false),
@@ -38,11 +37,11 @@ namespace Library.Migrations
                 {
                     table.PrimaryKey("PK_Libro", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Libro_Editorial_EditorialId",
-                        column: x => x.EditorialId,
+                        name: "FK_Libro_Editorial_IdEditorial",
+                        column: x => x.IdEditorial,
                         principalTable: "Editorial",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -57,13 +56,13 @@ namespace Library.Migrations
 
             migrationBuilder.InsertData(
                 table: "Libro",
-                columns: new[] { "Id", "Autor", "Costo", "EditorialId", "Fecha", "IdEditorial", "PrecioSugerido", "Titulo" },
-                values: new object[] { 1, "Gabo", 200000, null, new DateTime(2021, 2, 7, 15, 21, 20, 133, DateTimeKind.Local).AddTicks(8906), 1, 5000000, "viento se llevo" });
+                columns: new[] { "Id", "Autor", "Costo", "Fecha", "IdEditorial", "PrecioSugerido", "Titulo" },
+                values: new object[] { 1, "Gabo", 200000, new DateTime(2021, 2, 7, 15, 50, 50, 750, DateTimeKind.Local).AddTicks(859), 1, 5000000, "viento se llevo" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Libro_EditorialId",
+                name: "IX_Libro_IdEditorial",
                 table: "Libro",
-                column: "EditorialId");
+                column: "IdEditorial");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

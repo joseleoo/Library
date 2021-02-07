@@ -60,9 +60,6 @@ namespace Library.Migrations
                     b.Property<int>("Costo")
                         .HasColumnType("int");
 
-                    b.Property<int?>("EditorialId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
@@ -78,7 +75,7 @@ namespace Library.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EditorialId");
+                    b.HasIndex("IdEditorial");
 
                     b.ToTable("Libro");
 
@@ -88,7 +85,7 @@ namespace Library.Migrations
                             Id = 1,
                             Autor = "Gabo",
                             Costo = 200000,
-                            Fecha = new DateTime(2021, 2, 7, 15, 21, 20, 133, DateTimeKind.Local).AddTicks(8906),
+                            Fecha = new DateTime(2021, 2, 7, 15, 50, 50, 750, DateTimeKind.Local).AddTicks(859),
                             IdEditorial = 1,
                             PrecioSugerido = 5000000,
                             Titulo = "viento se llevo"
@@ -99,7 +96,9 @@ namespace Library.Migrations
                 {
                     b.HasOne("Library.Models.Editorial", "Editorial")
                         .WithMany()
-                        .HasForeignKey("EditorialId");
+                        .HasForeignKey("IdEditorial")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
