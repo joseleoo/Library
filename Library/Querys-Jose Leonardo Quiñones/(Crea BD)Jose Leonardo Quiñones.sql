@@ -1,12 +1,6 @@
-﻿USE [master]
-GO
-/****** Object:  Database [Library]    Script Date: 08/02/2021 7:05:21 ******/
+
 CREATE DATABASE [Library]
- CONTAINMENT = NONE
- ON  PRIMARY 
-( NAME = N'Library', FILENAME = N'C:\Users\desar\Library.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
- LOG ON 
-( NAME = N'Library_log', FILENAME = N'C:\Users\desar\Library_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+
 GO
 ALTER DATABASE [Library] SET COMPATIBILITY_LEVEL = 130
 GO
@@ -87,7 +81,6 @@ ALTER DATABASE SCOPED CONFIGURATION SET QUERY_OPTIMIZER_HOTFIXES = OFF;
 GO
 USE [Library]
 GO
-/****** Object:  Table [dbo].[Cliente]    Script Date: 08/02/2021 7:05:21 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -107,7 +100,6 @@ CREATE TABLE [dbo].[Cliente](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Compra]    Script Date: 08/02/2021 7:05:21 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -125,7 +117,6 @@ CREATE TABLE [dbo].[Compra](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Editorial]    Script Date: 08/02/2021 7:05:21 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -139,7 +130,6 @@ CREATE TABLE [dbo].[Editorial](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Empleado]    Script Date: 08/02/2021 7:05:21 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -158,7 +148,6 @@ CREATE TABLE [dbo].[Empleado](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Libro]    Script Date: 08/02/2021 7:05:22 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -177,6 +166,40 @@ CREATE TABLE [dbo].[Libro](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+SET IDENTITY_INSERT [dbo].[Cliente] ON 
+
+INSERT [dbo].[Cliente] ([IdCliente], [Identificación], [Nombres], [Apellidos], [DireccionEnvio], [TelefonoFijo], [Celular], [Email]) VALUES (1, N'123456789', N'Maria Andrea', N'Anders', N'Obere Str. 57', N'030-0074321', N'(5) 555-4729', N'anders@gmail.com')
+INSERT [dbo].[Cliente] ([IdCliente], [Identificación], [Nombres], [Apellidos], [DireccionEnvio], [TelefonoFijo], [Celular], [Email]) VALUES (2, N'12209', N'Thomas ', N'Hardy', N'Mataderos  2312', N'(5) 555-3932', N'(5) 555-3745', N'hardy@hotmail.com')
+INSERT [dbo].[Cliente] ([IdCliente], [Identificación], [Nombres], [Apellidos], [DireccionEnvio], [TelefonoFijo], [Celular], [Email]) VALUES (11, N'28023', N'Laurence ', N'Lebihan', N'12, rue des Bouchers', N'91.24.45.41', N'91.24.45.40', N'laurcence@hotmail.com')
+INSERT [dbo].[Cliente] ([IdCliente], [Identificación], [Nombres], [Apellidos], [DireccionEnvio], [TelefonoFijo], [Celular], [Email]) VALUES (21, N'52066', N'Elizabeth ', N'Brown', N'Berkeley Gardens 12  Brewery', N'555-9199', N'555-2282', N'lizi@gmail.com')
+SET IDENTITY_INSERT [dbo].[Cliente] OFF
+SET IDENTITY_INSERT [dbo].[Compra] ON 
+
+INSERT [dbo].[Compra] ([IdCompraLibro], [IdLibro], [IdCliente], [Fecha], [Valor], [IdEmpleado]) VALUES (1, 4, 1, CAST(N'2019-01-01' AS Date), CAST(200000 AS Decimal(18, 0)), 1)
+INSERT [dbo].[Compra] ([IdCompraLibro], [IdLibro], [IdCliente], [Fecha], [Valor], [IdEmpleado]) VALUES (2, 5, 2, CAST(N'2019-02-02' AS Date), CAST(300000 AS Decimal(18, 0)), 1)
+INSERT [dbo].[Compra] ([IdCompraLibro], [IdLibro], [IdCliente], [Fecha], [Valor], [IdEmpleado]) VALUES (4, 6, 11, CAST(N'2020-02-01' AS Date), CAST(250000 AS Decimal(18, 0)), 2)
+INSERT [dbo].[Compra] ([IdCompraLibro], [IdLibro], [IdCliente], [Fecha], [Valor], [IdEmpleado]) VALUES (5, 7, 11, CAST(N'2019-02-01' AS Date), CAST(350000 AS Decimal(18, 0)), 2)
+INSERT [dbo].[Compra] ([IdCompraLibro], [IdLibro], [IdCliente], [Fecha], [Valor], [IdEmpleado]) VALUES (7, 4, 11, CAST(N'2020-02-01' AS Date), CAST(450000 AS Decimal(18, 0)), 2)
+SET IDENTITY_INSERT [dbo].[Compra] OFF
+SET IDENTITY_INSERT [dbo].[Editorial] ON 
+
+INSERT [dbo].[Editorial] ([IdEditorial], [Nombre]) VALUES (1, N'Circunferencia de lectores')
+INSERT [dbo].[Editorial] ([IdEditorial], [Nombre]) VALUES (2, N'Normativa')
+SET IDENTITY_INSERT [dbo].[Editorial] OFF
+SET IDENTITY_INSERT [dbo].[Empleado] ON 
+
+INSERT [dbo].[Empleado] ([IdEmpleado], [Nombres], [Apellidos], [Direccion], [TelefonoFijo], [Celular], [Cargo]) VALUES (1, N'Nancy', N'Davolio', N'507 - 20th Ave. E.
+Apt. 2A', N'(206) 555-9857', N'555-98598', N'Sales Representative')
+INSERT [dbo].[Empleado] ([IdEmpleado], [Nombres], [Apellidos], [Direccion], [TelefonoFijo], [Celular], [Cargo]) VALUES (2, N'Margaret', N'Peacock', N'4110 Old Redmond Rd.', N'(206) 555-8122', N'555-8129', N'Vice President, Sales')
+INSERT [dbo].[Empleado] ([IdEmpleado], [Nombres], [Apellidos], [Direccion], [TelefonoFijo], [Celular], [Cargo]) VALUES (3, N'Javier ', N'Solis', N'calle 100', N'12345678', N'123456', N'Sales Representative')
+SET IDENTITY_INSERT [dbo].[Empleado] OFF
+SET IDENTITY_INSERT [dbo].[Libro] ON 
+
+INSERT [dbo].[Libro] ([IdLibro], [Titulo], [IdEditorial], [Fecha], [Costo], [PrecioSugerido], [Autor]) VALUES (4, N'Uncle Bob''s Organic Pears', 1, CAST(N'2020-01-01' AS Date), CAST(100000 AS Decimal(18, 0)), CAST(200000 AS Decimal(18, 0)), N'Charlotte Cooper')
+INSERT [dbo].[Libro] ([IdLibro], [Titulo], [IdEditorial], [Fecha], [Costo], [PrecioSugerido], [Autor]) VALUES (5, N'Guaraná Fantástica', 2, CAST(N'2020-02-13' AS Date), CAST(200000 AS Decimal(18, 0)), CAST(300000 AS Decimal(18, 0)), N'Regina Murphy')
+INSERT [dbo].[Libro] ([IdLibro], [Titulo], [IdEditorial], [Fecha], [Costo], [PrecioSugerido], [Autor]) VALUES (6, N'Tokyo Traders', 1, CAST(N'2020-03-01' AS Date), CAST(150000 AS Decimal(18, 0)), CAST(250000 AS Decimal(18, 0)), N'Yoshi Nagase')
+INSERT [dbo].[Libro] ([IdLibro], [Titulo], [IdEditorial], [Fecha], [Costo], [PrecioSugerido], [Autor]) VALUES (7, N'Chocolate', 2, CAST(N'2020-04-01' AS Date), CAST(250000 AS Decimal(18, 0)), CAST(350000 AS Decimal(18, 0)), N'Carlos Diaz')
+SET IDENTITY_INSERT [dbo].[Libro] OFF
 ALTER TABLE [dbo].[Compra]  WITH CHECK ADD  CONSTRAINT [FK_Compra_Cliente] FOREIGN KEY([IdCliente])
 REFERENCES [dbo].[Cliente] ([IdCliente])
 GO
@@ -202,7 +225,6 @@ REFERENCES [dbo].[Libro] ([IdLibro])
 GO
 ALTER TABLE [dbo].[Libro] CHECK CONSTRAINT [FK_Libro_Libro]
 GO
-/****** Object:  StoredProcedure [dbo].[ObtieneTotalVentasXEmpleado]    Script Date: 08/02/2021 7:05:22 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -232,7 +254,6 @@ left join Libro l on l.IdLibro= c.IdLibro
 group by Nombres, Apellidos,YEAR(c.fecha)
 )as tabla
 group by nombre
-
 
 
 
